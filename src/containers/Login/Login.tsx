@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./login.css";
+import "./Login.css";
 import auth from "../../services/auth";
 import {
     Button,
@@ -15,14 +15,12 @@ export interface LoginState {
     password: string;
 }
 
-
 export class Login extends React.PureComponent<{}, LoginState> {
     public state: LoginState = {
         showPassword: false,
         email: "",
         password: ""
     };
-
 
     public render() {
         const {showPassword} = this.state;
@@ -37,7 +35,6 @@ export class Login extends React.PureComponent<{}, LoginState> {
                 />
             </Tooltip>
         );
-
 
         return (
             <form onSubmit={this.handleSubmit}>
@@ -59,8 +56,6 @@ export class Login extends React.PureComponent<{}, LoginState> {
                     <Button type="submit">Submit</Button>
                 </div>
             </form>
-
-
         );
     }
 
