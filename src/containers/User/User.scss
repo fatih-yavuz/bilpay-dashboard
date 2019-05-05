@@ -1,0 +1,23 @@
+@import "../../../node_modules/@blueprintjs/core/lib/scss/variables";
+
+.main-user-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & .user-info-card {
+    height: 50vh;
+    width: 50vw;
+    text-align: center;
+    background-color: $light-gray5;
+  }
+
+  & .search-user {
+    margin: $pt-grid-size * 3;
+
+    & input {
+      height: $pt-input-height-large;
+    }
+  }
+}

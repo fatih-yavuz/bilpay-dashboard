@@ -5,10 +5,16 @@ export interface UserState {
 }
 
 export const SELECT_USER = "SELECT_USER";
+export const UPDATE_USER = "SELECT_USER";
 
 interface SelectUserAction {
   type: typeof SELECT_USER
   payload: UserState
 }
 
-export type UserActionTypes = SelectUserAction;
+interface UpdateUserAction {
+  type: typeof UPDATE_USER
+  payload: UserState
+}
+
+export type UserActionTypes = SelectUserAction | UpdateUserAction;

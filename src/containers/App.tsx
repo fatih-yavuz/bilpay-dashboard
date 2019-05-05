@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import { SystemState } from "../store/system/types";
 import { AppState } from "../store";
 import Login from "./Login/Login";
-import SearchUser from "./SearchUser/SearchUser";
-import "./App.css";
+import User from "./User/User";
+import "./App.scss";
 
 interface AppProps {
     system: SystemState
@@ -16,7 +16,7 @@ class App extends React.Component<AppProps> {
         return (
             <div className="App">
                 {
-                    loggedIn ? <SearchUser /> : <Login />
+                    loggedIn ? <User /> : <Login />
                 }
             </div>
         );

@@ -3,7 +3,7 @@ import "../../modals/User";
 import {
   UserState,
   UserActionTypes,
-  SELECT_USER
+  SELECT_USER, UPDATE_USER
 } from "./types"
 
 const initialState: UserState = {
@@ -15,7 +15,8 @@ export function userReducer(
   action: UserActionTypes
 ): UserState {
   switch (action.type) {
-    case SELECT_USER: {
+    case SELECT_USER:
+    case UPDATE_USER: {
       return {
         ...state,
         ...action.payload

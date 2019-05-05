@@ -1,12 +1,12 @@
 import {MenuItem} from "@blueprintjs/core";
 import { Suggest, ItemPredicate, ItemRenderer } from "@blueprintjs/select";
 import * as React from "react";
-import User from "../../modals/User";
-import { AppState } from "../../store";
-import { UserState } from "../../store/user/types";
-import { getUsers } from "../../services/user";
-import { selectUser } from "../../store/user/actions";
 import {connect} from "react-redux";
+import User from "../../../modals/User";
+import { AppState } from "../../../store";
+import { UserState } from "../../../store/user/types";
+import { getUsers } from "../../../services/user";
+import { selectUser } from "../../../store/user/actions";
 
 function highlightText(text: string, query: string) {
   let lastIndex = 0;
@@ -96,6 +96,7 @@ class SearchUser extends React.Component<SearchUserProps, SearchUserState> {
     console.log(this.props.selectedUser.user);
     return (
       <UserSelect
+        className="search-user"
         inputValueRenderer={(user: User) => user.name}
         itemPredicate={filterUser}
         itemRenderer={renderUser}
