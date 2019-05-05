@@ -1,4 +1,5 @@
 import * as React from "react";
+import {connect} from "react-redux";
 import "./Login.css";
 import auth from "../../services/auth";
 import {
@@ -7,6 +8,11 @@ import {
     Intent,
     Tooltip,
 } from "@blueprintjs/core";
+import { updateSession } from "../../store/system/actions";
+
+interface LoginProps {
+    updateSession: typeof updateSession
+}
 
 export interface LoginState {
     [key: string]: string | boolean,
@@ -15,7 +21,7 @@ export interface LoginState {
     password: string;
 }
 
-export class Login extends React.PureComponent<{}, LoginState> {
+class Login extends React.PureComponent<LoginProps, LoginState> {
     public state: LoginState = {
         showPassword: false,
         email: "",
@@ -65,6 +71,11 @@ export class Login extends React.PureComponent<{}, LoginState> {
         try {
             const response = await auth(email, password);
             console.log(response);
+            this.props.updateSession({
+                loggedIn: true,
+                session: response.session,
+                email: response.email
+            });
         } catch (e) {
             console.error(e);
         }
@@ -78,3 +89,5 @@ export class Login extends React.PureComponent<{}, LoginState> {
 
     private handleLockClick = () => this.setState({showPassword: !this.state.showPassword});
 }
+
+export default connect(null, { updateSession })(Login);

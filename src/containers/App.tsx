@@ -1,8 +1,9 @@
 import React from 'react';
-import {Login} from "./Login/Login";
+import {connect} from "react-redux";
 import { SystemState } from "../store/system/types";
 import { AppState } from "../store";
-import {connect} from "react-redux";
+import Login from "./Login/Login";
+import SearchUser from "./SearchUser/SearchUser";
 import "./App.css";
 
 interface AppProps {
@@ -15,7 +16,7 @@ class App extends React.Component<AppProps> {
         return (
             <div className="App">
                 {
-                    loggedIn ? "logged in" : <Login />
+                    loggedIn ? <SearchUser /> : <Login />
                 }
             </div>
         );
