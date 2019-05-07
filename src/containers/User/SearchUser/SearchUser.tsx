@@ -7,6 +7,8 @@ import { AppState } from "../../../store";
 import { UserState } from "../../../store/user/types";
 import { getUsers } from "../../../services/user";
 import { selectUser } from "../../../store/user/actions";
+import {Notification} from "../../../components/Notification";
+
 
 function highlightText(text: string, query: string) {
   let lastIndex = 0;
@@ -88,12 +90,15 @@ class SearchUser extends React.Component<SearchUserProps, SearchUserState> {
   };
 
   public async componentDidMount(): Promise<void> {
-    const users = await getUsers();
-    this.setState({ users });
+    try {
+      const users = await getUsers();
+      this.setState({ users });
+    } catch (e) {
+      Notification.show({message: "Unable to fetch users.", icon: "warning-sign", intent: "danger"});
+    }
   }
 
   public render() {
-    console.log(this.props.selectedUser.user);
     return (
       <UserSelect
         className="search-user"
@@ -104,7 +109,6 @@ class SearchUser extends React.Component<SearchUserProps, SearchUserState> {
         itemsEqual={areUsersEqual}
         noResults={<MenuItem disabled={true} text="User does not exist." />}
         onItemSelect={this.handleValueChange}
-        popoverProps={{ minimal: false }}
       />
     )
   }

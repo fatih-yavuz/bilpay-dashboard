@@ -19,3 +19,11 @@
     width: 80%;
     align-self: center;
 }
+
+.send-bilcoins-body {
+    display: flex;
+
+    & > * {
+        margin-left: 20px;
+    }
+}
